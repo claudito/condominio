@@ -1,0 +1,5 @@
+/.htaccess
+/config.php
+/test.php
+/ajax/logout.php
+/vendor

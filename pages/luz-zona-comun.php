@@ -1,18 +1,18 @@
 <?php 
 include'../autoload.php';
 Session::validity();
-Assets::principal('Luz Zona Común');
+Assets::title('Luz Zona Común');
 Assets::sweetalert();
 Assets::datatables();
-Html::header();
+Assets::head();
 $folder  = "luz-zona-comun";
 
-include'../template/modal/'.$folder.'/consultar.php';
+include'../templates/modal/'.$folder.'/consultar.php';
 
  ?>
 <div class="row">
 <div class="col-md-12">
-<?php include('../vista/nav.php'); ?>
+<?php include('../templates/nav.php'); ?>
 </div>
 </div>
 
@@ -33,6 +33,6 @@ include'../template/modal/'.$folder.'/consultar.php';
 <script src="../ajax/app/<?php echo $folder; ?>.js"></script>
 <script>loadTabla();</script>
 
-<?php Html::footer(); ?>
+<?php Assets::footer(); ?>
 
 
