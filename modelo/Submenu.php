@@ -23,9 +23,9 @@ public function agregar()
    try {
     $modelo    = new Conexion();
     $conexion  = $modelo->get_conexion();
-    $query     = "SELECT * FROM submenu WHERE descripcion=:descripcion";
+    $query     = "SELECT * FROM submenu WHERE ruta=:ruta";
     $statement = $conexion->prepare($query);
-    $statement->bindParam(':descripcion',$this->descripcion);
+    $statement->bindParam(':ruta',$this->ruta);
     $statement->execute();
     $result   = $statement->fetchAll();
     

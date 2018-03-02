@@ -24,6 +24,7 @@ if ($valor=='existe')
 else if($valor=='ok')
 {
   Message::sweetalert("Buen Trabajo","success","Registro Existoso",2);
+  
 }
 else
 {

@@ -135,6 +135,101 @@ function consulta($id,$campo)
 
 
 
+function pago_mensual($codigo_departamento,$fecha_anterior,$fecha_actual)
+{
+
+try {
+
+$conexion  = Conexion::get_conexion();
+$query     = "SELECT * FROM recibo_agua  WHERE codigo_departamento=:codigo_departamento and fecha_actual=:fecha_actual";
+$statement = $conexion->prepare($query);
+$statement->bindParam(':codigo_departamento',$codigo_departamento);
+$statement->bindParam(':fecha_actual',$fecha_actual);
+$statement->execute();
+$result = $statement->fetchAll();
+if (count($result)>0) 
+{
+  return "existe";
+} 
+else 
+{
+  $query =  "SET @factor = (SELECT factor FROM factor_agua  WHERE periodo=:fecha_actual);
+INSERT INTO recibo_agua(codigo_departamento,fecha_anterior,lectura_anterior,fecha_actual,
+lectura_actual,consumo,factor,importe)
+SELECT t1.codigo_departamento,t2.fecha fecha_anterior,t2.consumo lectura_anterior,t1.fecha fecha_actual,t1.consumo lectura_actual,
+ABS(t1.consumo-t2.consumo) consumo,@factor factor,
+round(ABS(t1.consumo-t2.consumo)*@factor,6)importe FROM (SELECT consumo,codigo_departamento,fecha FROM propietario_servicio_agua t1 WHERE 
+codigo_departamento=:codigo_departamento AND fecha =:fecha_actual
+) as t1 
+LEFT JOIN (SELECT consumo,codigo_departamento,fecha FROM propietario_servicio_agua t1 WHERE 
+codigo_departamento=:codigo_departamento AND fecha =:fecha_anterior
+) as t2
+ON t1.codigo_departamento=t2.codigo_departamento;";
+  $statement = $conexion->prepare($query);
+  $statement->bindParam('codigo_departamento',$codigo_departamento);
+  $statement->bindParam(':fecha_actual',$fecha_actual);
+  $statement->bindParam(':fecha_anterior',$fecha_anterior);
+  $statement->execute();
+  return "ok";
+}
+
+
+  
+} catch (Exception $e) {
+  
+echo "Error: ".$e->getMessage();
+
+}
+
+
+}
+
+
+function lista_pago_mensual($fecha_actual)
+{
+
+try {
+
+$conexion  = Conexion::get_conexion();
+$query     = "SELECT * FROM recibo_agua  WHERE  fecha_actual=:fecha_actual";
+$statement = $conexion->prepare($query);
+$statement->bindParam(':fecha_actual',$fecha_actual);
+$statement->execute();
+$result = $statement->fetchAll();
+return $result;
+
+} catch (Exception $e) {
+  
+echo "Error: ".$e->getMessage();
+
+}
+
+
+}
+
+
+function consulta_pago_mensual($codigo_departamento,$fecha_actual)
+{
+
+try {
+
+$conexion  = Conexion::get_conexion();
+$query     = "SELECT * FROM recibo_agua  WHERE codigo_departamento=:codigo_departamento AND fecha_actual=:fecha_actual";
+$statement = $conexion->prepare($query);
+$statement->bindParam(':codigo_departamento',$codigo_departamento);
+$statement->bindParam(':fecha_actual',$fecha_actual);
+$statement->execute();
+$result = $statement->fetchAll();
+return $result;
+
+} catch (Exception $e) {
+  
+echo "Error: ".$e->getMessage();
+
+}
+
+
+}
 
 
 

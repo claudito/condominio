@@ -188,6 +188,7 @@ public function consulta($id,$campo)
 
 
 
+
 }
 
 

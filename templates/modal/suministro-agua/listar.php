@@ -106,12 +106,20 @@ $fecha    =  $_SESSION['suministro-agua'];
 
 <div class="alert alert-info" role="alert">
   <a href="#" class="alert-link">
-  CALCULO DE FACTOR MENSUAL: <?php echo $costo; ?> / <?php echo $m3; ?> = <?php echo round($costo / $m3,6); ?>
+  CALCULO DE FACTOR MENSUAL: 
+  <?php  $factor =  round($costo / $m3,6);    ?>
+  <?php echo $costo; ?> / <?php echo $m3; ?> = <?php echo $factor; ?>
   </a>
 </div>	
+
+<?php 
+//registro de factor mensual de agua;
+Factor_agua::agregar($factor,$fecha);
+ ?>
 
 
  <?php else: ?>
  <p class="alert alert-warning">No existen Registros.</p>
  <?php endif ?>
+
 

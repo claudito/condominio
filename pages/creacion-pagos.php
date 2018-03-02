@@ -8,8 +8,6 @@ Assets::head();
 Assets::nav('../');
 Assets::breadcrumbs('BASE DE DATOS','CREACIÓN DE PAGOS');
 Assets::modal('creacion-pagos/agregar');
-//Assets::modal('creacion-pagos/eliminar');
-
  ?>
 
 
