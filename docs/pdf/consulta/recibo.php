@@ -49,6 +49,13 @@ $periodo      =  $_GET['periodo'];
 <?php endforeach ?>
 </tbody>
 
+<tbody>
+<tr>
+<td colspan="4" class="cabecera-td  center">AGUA COMÚN (regado de jardines, baños comunes, uso de agua para limpieza, acopios)</td>
+<td class="cabecera-td center"><?php echo round(Agua_comun::lista($periodo)[0]['monto'],2); ?></td>
+</tr>
+</tbody>
+
 </table>
 
 </body>

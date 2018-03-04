@@ -233,6 +233,25 @@ echo "Error: ".$e->getMessage();
 
 
 
+function consumo($periodo)
+{
+
+
+$conexion  = Conexion::get_conexion();
+$query     = "SELECT  SUM(consumo)consumo FROM recibo_agua WHERE fecha_actual=:periodo";
+$statement = $conexion->prepare($query);
+$statement->bindParam(':periodo',$periodo);
+$statement->execute();
+$result = $statement->fetch();
+return $result['consumo'];
+
+
+}
+
+
+
+
+
 
 
 }

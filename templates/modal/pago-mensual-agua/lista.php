@@ -37,14 +37,17 @@ Data Actualizada.
  	<th class="text-center">Fecha Anterior</th>
  	<th class="text-center">Lectura Anterior</th>
  	<th class="text-center">Fecha Actual</th>
- 	<th class="text-center">Lectura Anterior</th>
+ 	<th class="text-center">Lectura Actual</th>
  	<th class="text-center">Consumo</th>
  	<th class="text-center">Factor</th>
  	<th class="text-center">Importe</th>
  	</tr>
  	</thead>
  	<tbody>
- 	<?php foreach (Suministro_agua::lista_pago_mensual($periodo_actual) as $key => $value): ?>
+ 	<?php 
+     
+    $consumo  = 0;
+ 	foreach (Suministro_agua::lista_pago_mensual($periodo_actual) as $key => $value): ?>
  	<tr>
  	<td class="text-center"><?php echo $value['codigo_departamento']; ?></td>
  	<td class="text-center"><?php echo $value['fecha_anterior']; ?></td>
@@ -55,11 +58,20 @@ Data Actualizada.
  	<td class="text-center"><?php echo round($value['factor'],2); ?></td>
  	<td class="text-center"><?php echo round($value['importe'],2); ?></td>
  	</tr>
+
+    <?php 
+    
+    $consumo = $consumo + $value['consumo'];
+
+     ?>
+
  	<?php endforeach ?>
  	</tbody>
  	</table>
  	</div>
- </div>
+ 	<div class="panel-footer"><label>Total Consumo: <?php echo $consumo;?></label></div>
+
+ </div
  <?php else: ?>
  <p class="alert alert-warning">No hay factor registrado para este mes</p>
  <?php endif ?>

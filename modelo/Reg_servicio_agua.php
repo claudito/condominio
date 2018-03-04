@@ -66,17 +66,18 @@ else
 }
 
 
-function actualizar($id,$column,$text)
+function actualizar($id,$lectura,$comentario)
 {
 try {
 
 $conexion  =  new Conexion();
 $bd        =  $conexion->get_conexion();
 $query     =  "UPDATE propietario_servicio_agua SET 
-".$column."=:text WHERE id=:id";
+consumo=:lectura,comentario=:comentario WHERE id=:id";
 $statement =  $bd->prepare($query);
 $statement->bindParam(':id',$id);
-$statement->bindParam(':text',$text);
+$statement->bindParam(':lectura',$lectura);
+$statement->bindParam(':comentario',$comentario);
 if ($statement) 
 { 
   $statement->execute();

@@ -1,4 +1,4 @@
- var ruta  = "http://localhost/dev/condominio/";
+ var ruta  = "http://192.168.1.17/dev/condominio/";
 //URL remoto:
 //var URL  = "http://condominio.perutec.com.pe/";
 

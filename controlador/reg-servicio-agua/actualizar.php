@@ -7,27 +7,19 @@ $funciones   = new Funciones();
 $message     =  new Message();
 
 $id          = $funciones->validar_xss($_POST['id']);
-$text        = $funciones->validar_xss($_POST['text']);
-$column_name = $funciones->validar_xss($_POST['column_name']);
+$lectura     = $funciones->validar_xss($_POST['lectura']);
+$comentario  = $funciones->validar_xss($_POST['comentario']);
 
+$valor       = Reg_servicio_agua::actualizar($id,$lectura,$comentario);
 
-
-$valor       = Reg_servicio_agua::actualizar($id,$column_name,$text);
-
- switch ($valor) {
-     	case 'ok':
-     	echo '<div class="alert alert-success">
-     		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-     		 Registro Actualizado.
-     	</div>';
-     		break;
-     	default:
-     	echo '<div class="alert alert-danger">
-     		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-     		Error de Actualización
-     	</div>';
-     		break;
-     }
+switch ($valor) {
+case 'ok':
+Message::sweetalert("Buen Trabajo","success","Registro Actualizado",2);
+break;
+default:
+Message::sweetalert("Error de Actualización","error","Consulte al área de Soporte",2);
+break;
+}
 
 
 
