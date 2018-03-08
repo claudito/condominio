@@ -130,7 +130,7 @@ function consulta($id,$campo)
 }
 
 
-function concepto($departamento,$campo)
+function concepto($departamento,$periodo)
 {
    
   try {
@@ -138,17 +138,17 @@ function concepto($departamento,$campo)
   $modelo    = new Conexion();
   $conexion  = $modelo->get_conexion();
   $query     = "
-SELECT sl.torre,sl.numero,sl.nombre,sl.mes,sl.costo,t.departamento,t.cant_departamento,round((sl.costo/t.cant_departamento),2)importe
- FROM (SELECT s.numero,s.nombre,s.torre,sl.costo,sl.mes  FROM suministro_luz as sl INNER JOIN (SELECT * FROM suministro WHERE tipo='luz' AND torre IN (1,2,3,4,5,6,7,8,9,10,11,12))s 
-ON sl.numero=s.numero  
-WHERE sl.mes='2017-09')sl INNER JOIN (SELECT id_torre,count(numero)cant_departamento,numero departamento FROM  departamento GROUP  BY id_torre) t 
-ON sl.torre=t.id_torre  WHERE departamento=:departamento
+SELECT sl.numero,sl.costo,s.torre,d.cantidad,round((sl.costo/d.cantidad),2)importe FROM  suministro_luz sl INNER JOIN 
+suministro s ON sl.numero=s.numero  INNER JOIN (SELECT d.id_torre,d.numero,t.cantidad FROM departamento d INNER JOIN 
+(SELECT id_torre,COUNT(numero)cantidad FROM departamento GROUP BY id_torre) t 
+ON d.id_torre=t.id_torre WHERE numero=:departamento) d ON s.torre=d.id_torre WHERE mes=:periodo
 ";
   $statement = $conexion->prepare($query);
   $statement->bindParam(':departamento',$departamento);
+  $statement->bindParam(':periodo',$periodo);
   $statement->execute();
   $result = $statement->fetch();
-  return $result[$campo];
+  return $result['importe'];
   } catch (Exception $e) {
   echo "ERROR: " . $e->getMessage();
   }
@@ -158,8 +158,68 @@ ON sl.torre=t.id_torre  WHERE departamento=:departamento
 
 
 
+function etapa1($fecha)
+{
+   
+  try {
+
+  $modelo    = new Conexion();
+  $conexion  = $modelo->get_conexion();
+  $query     = "
+SELECT round(sum(c.importe),2)importe  FROM (SELECT sl.numero,s.nombre,sl.costo,sl.mes,
+CASE sl.numero
+WHEN '2530137' THEN sl.costo/192
+ELSE
+sl.costo/464
+END importe
+ FROM suministro_luz  sl INNER JOIN  
+(SELECT  nombre,numero FROM suministro WHERE tipo='luz' AND torre=100 and numero not in ('2583279')) s
+ON sl.numero=s.numero
+WHERE mes=:fecha)c;
+";
+  $statement = $conexion->prepare($query);
+  $statement->bindParam(':fecha',$fecha);
+  $statement->execute();
+  $result = $statement->fetch();
+  return $result['importe'];
+  } catch (Exception $e) {
+  echo "ERROR: " . $e->getMessage();
+  }
 
 
+}
+
+
+function etapa2($fecha)
+{
+   
+  try {
+
+  $modelo    = new Conexion();
+  $conexion  = $modelo->get_conexion();
+  $query     = "
+SELECT round(sum(c.importe),2)importe  FROM (SELECT sl.numero,s.nombre,sl.costo,sl.mes,
+CASE sl.numero
+WHEN '2583279' THEN sl.costo/272
+ELSE
+sl.costo/464
+END importe
+ FROM suministro_luz  sl INNER JOIN  
+(SELECT  nombre,numero FROM suministro WHERE tipo='luz' AND torre=100 and numero not in ('2530137')) s
+ON sl.numero=s.numero
+WHERE mes=:fecha)c;
+";
+  $statement = $conexion->prepare($query);
+  $statement->bindParam(':fecha',$fecha);
+  $statement->execute();
+  $result = $statement->fetch();
+  return $result['importe'];
+  } catch (Exception $e) {
+  echo "ERROR: " . $e->getMessage();
+  }
+
+
+}
 
 
 

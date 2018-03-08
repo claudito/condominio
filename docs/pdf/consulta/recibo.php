@@ -2,6 +2,24 @@
 
 $departamento =  $_GET['departamento'];
 $periodo      =  $_GET['periodo'];
+$torre        =  Departamento::consulta2($departamento);
+
+$etapa1       = array('1','2','3','4','5','6');
+$etapa2       = array('7','8','9','10','11','12');
+
+$etapa1      = (in_array($torre,$etapa1)) ? '1' : '0' ;
+$etapa2      = (in_array($torre,$etapa2)) ? '1' : '0' ;
+
+
+if ($etapa1==1) 
+{
+$concepto_etapa = Suministro_luz::etapa1($periodo);
+} 
+else
+{
+$concepto_etapa = Suministro_luz::etapa2($periodo);
+}
+
 
  ?>
 <!DOCTYPE html>
@@ -31,7 +49,7 @@ $periodo      =  $_GET['periodo'];
 <table class="cabecera">
 <thead>
 <tr>
-<th class="cabecera-td center">LECTURA DEL CONTROMETRO DE AGUA <?php echo $periodo; ?></th>
+<th class="cabecera-td center">LECTURA DEL CONTOMETRO DE AGUA <?php echo $periodo; ?></th>
 </tr>
 </thead>
 </table>
@@ -71,10 +89,16 @@ $periodo      =  $_GET['periodo'];
 <tbody>
 <tr>
 <td colspan="4"  class="cabecera-td center">LUZ ZONAS COMÚN EDIFICIO</td>
-<td class="cabecera-td center"><?= Suministro_luz::concepto($departamento,'importe'); ?></td>
+<td class="cabecera-td center"><?= Suministro_luz::concepto($departamento,$periodo); ?></td>
 </tr>
 </tbody>
 
+<tbody>
+<tr>
+<td colspan="4"  class="cabecera-td center">LUZ COMÚN CONDOMINIO(GARITA DE SEGURIDAD, BOMBAS DE AGUA, BCI, ILUMINACIÓN DE ZONAS COMUNES)</td>
+<td class="cabecera-td center"><?= $concepto_etapa; ?></td>
+</tr>
+</tbody>
 
 </table>
 

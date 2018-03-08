@@ -186,6 +186,24 @@ public function consulta($id,$campo)
 
 
 
+public function consulta2($numero)
+{
+    try {
+        
+    $modelo    = new Conexion();
+    $conexion  = $modelo->get_conexion();
+    $query     = "SELECT id_torre   FROM departamento WHERE numero=:numero";
+    $statement = $conexion->prepare($query);
+    $statement->bindParam(':numero',$numero);
+    $statement->execute();
+    $result   = $statement->fetch();
+    return $result['id_torre'];
+    } catch (Exception $e) {
+        echo "ERROR: " . $e->getMessage();
+    }
+}
+
+
 
 
 
