@@ -2,6 +2,7 @@
 
 $departamento =  $_GET['departamento'];
 $periodo      =  $_GET['periodo'];
+
  ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -26,6 +27,17 @@ $periodo      =  $_GET['periodo'];
 </tr>
 
 </table>
+
+<table class="cabecera">
+<thead>
+<tr>
+<th class="cabecera-td center">LECTURA DEL CONTROMETRO DE AGUA <?php echo $periodo; ?></th>
+</tr>
+</thead>
+</table>
+
+
+
 
 <table class="cabecera">
 <thead>
@@ -55,6 +67,14 @@ $periodo      =  $_GET['periodo'];
 <td class="cabecera-td center"><?php echo round(Agua_comun::lista($periodo)[0]['monto'],2); ?></td>
 </tr>
 </tbody>
+
+<tbody>
+<tr>
+<td colspan="4"  class="cabecera-td center">LUZ ZONAS COMÚN EDIFICIO</td>
+<td class="cabecera-td center"><?= Suministro_luz::concepto($departamento,'importe'); ?></td>
+</tr>
+</tbody>
+
 
 </table>
 

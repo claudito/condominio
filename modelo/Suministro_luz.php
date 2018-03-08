@@ -130,6 +130,34 @@ function consulta($id,$campo)
 }
 
 
+function concepto($departamento,$campo)
+{
+   
+  try {
+
+  $modelo    = new Conexion();
+  $conexion  = $modelo->get_conexion();
+  $query     = "
+SELECT sl.torre,sl.numero,sl.nombre,sl.mes,sl.costo,t.departamento,t.cant_departamento,round((sl.costo/t.cant_departamento),2)importe
+ FROM (SELECT s.numero,s.nombre,s.torre,sl.costo,sl.mes  FROM suministro_luz as sl INNER JOIN (SELECT * FROM suministro WHERE tipo='luz' AND torre IN (1,2,3,4,5,6,7,8,9,10,11,12))s 
+ON sl.numero=s.numero  
+WHERE sl.mes='2017-09')sl INNER JOIN (SELECT id_torre,count(numero)cant_departamento,numero departamento FROM  departamento GROUP  BY id_torre) t 
+ON sl.torre=t.id_torre  WHERE departamento=:departamento
+";
+  $statement = $conexion->prepare($query);
+  $statement->bindParam(':departamento',$departamento);
+  $statement->execute();
+  $result = $statement->fetch();
+  return $result[$campo];
+  } catch (Exception $e) {
+  echo "ERROR: " . $e->getMessage();
+  }
+
+
+}
+
+
+
 
 
 
