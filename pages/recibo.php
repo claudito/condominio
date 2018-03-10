@@ -27,7 +27,7 @@ Assets::breadcrumbs('PAGOS','RECIBO DE PAGO');
 	<select name="departamento" class="form-control" required>
 	<option value="">[Seleccionar Departamento]</option>
 	<?php foreach (Propietario::lista() as $key => $value): ?>
-	<option value="<?php echo $value['codigo_departamento'] ?>"><?php echo $value['codigo_departamento'].' - '.$value['nombres'] ?></option>
+	<option value="<?php echo $value['codigo_departamento'] ?>"><?php echo $value['codigo_departamento'].' - '.$value['nombres'].$value['razon_social'] ?></option>
 	<?php endforeach ?>
 	</select>
 	</div>

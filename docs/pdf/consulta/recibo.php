@@ -39,7 +39,7 @@ $concepto_etapa = Suministro_luz::etapa2($periodo);
 <td class="cabecera-td"><strong>DPTO / CÓDIGO</strong></td>
 <td class="cabecera-td"><?php echo $departamento; ?></td>
 <td class="cabecera-td"><strong>NOMBRE</strong></td>
-<td class="cabecera-td"><?php echo  Propietario::consulta_pdf($departamento,'nombres');; ?></td>
+<td class="cabecera-td center"><?php echo  Propietario::consulta_pdf($departamento,'nombres').Propietario::consulta_pdf($departamento,'razon_social'); ?></td>
 <td class="cabecera-td"><strong>EMISIÓN</strong></td>
 <td class="cabecera-td"><?php echo $periodo; ?></td>
 </tr>
