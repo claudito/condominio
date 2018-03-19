@@ -20,7 +20,6 @@ else
 $concepto_etapa = Suministro_luz::etapa2($periodo);
 }
 
-
  ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -99,6 +98,53 @@ $concepto_etapa = Suministro_luz::etapa2($periodo);
 <td class="cabecera-td center"><?= $concepto_etapa; ?></td>
 </tr>
 </tbody>
+
+<tbody>
+<tr>
+<td colspan="4"  class="cabecera-td center">MANTENIMIENTO DE ASCENSOR  PREVENTIVO EDIFICIO</td>
+<td class="cabecera-td center"><?= MantAscensor::concepto($torre,$periodo); ?></td>
+</tr>
+</tbody>
+
+
+<tbody>
+<tr>
+<td colspan="4"  class="cabecera-td center">ADMINISTRACIÓN DEL CONDOMINIO(SERVICIO DE ADMINISTRACIÓN, SEGURIDAD, LIMPIEZA Y JARDINERIA)</td>
+<td class="cabecera-td center"><?= round(AdmCondominio::concepto($periodo)/count(Departamento::lista()),2); ?></td>
+</tr>
+</tbody>
+
+<tbody>
+<tr>
+<td colspan="4"  class="cabecera-td center">FONDO COMÚN</td>
+<td class="cabecera-td center"><?= FondoComun::concepto($periodo) / count(Departamento::lista()); ?></td>
+</tr>
+</tbody>
+
+
+<tbody>
+<tr>
+<td colspan="4"  class="cabecera-td center">CUOTA COMÚN EDIFICIO</td>
+<td class="cabecera-td center"><?= round(CuotaComun::concepto($torre,$periodo),2); ?></td>
+</tr>
+</tbody>
+
+
+<tbody>
+<tr>
+<td colspan="4"  class="cabecera-td center">2DA CUOTA DE INSCRIPCIÓN DE JUNTAS EN RR.PP. S/. 8.95</td>
+<td class="cabecera-td center"><?= round(PagoRrpp::concepto($departamento,$periodo),2); ?></td>
+</tr>
+</tbody>
+
+
+<tbody>
+<tr>
+<td colspan="4"  class="cabecera-td center">COBRO POR ABONO EN VENTANILLA DE BANCO (S/5.00)</td>
+<td class="cabecera-td center"><?= round(CobroVentanilla::concepto($departamento,$periodo),2); ?></td>
+</tr>
+</tbody>
+
 
 </table>
 
