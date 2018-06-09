@@ -3,9 +3,9 @@
 date_default_timezone_set('America/Lima');
 #
 #URL Local
-define("URL","http://localhost/dev/condominio/");
+#define("URL","http://localhost/dev/condominio/");
 #Remoto
-#define("URL","http://condominio.perutec.com.pe/");
+define("URL","https://condominio.perutec.com.pe/");
 define("FOLDER","/condominio/");#Folder del Proyecto
 #Datos de Conexión a Base de Datos
 define("SERVER","localhost");

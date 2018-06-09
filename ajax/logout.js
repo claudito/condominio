@@ -1,6 +1,6 @@
- var ruta  = "http://localhost/dev/condominio/";
+// var ruta  = "http://localhost/dev/condominio/";
 //URL remoto:
-//var URL  = "http://condominio.perutec.com.pe/";
+var URL  = "https://condominio.perutec.com.pe/";
 
 function logout(){
 

@@ -3,10 +3,10 @@ Options -Indexes
 # Activar RewriteEngine
 RewriteEngine on
 #URL Local:
-RewriteBase /dev/condominio/
+#RewriteBase /dev/condominio/
 #URL Remoto:
 #
-#RewriteBase /
+RewriteBase /
 RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteCond %{SCRIPT_FILENAME} !-f
  

@@ -26,7 +26,7 @@ echo '
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="shortcut icon" type="image/x-icon" href="https://cdn0.iconfinder.com/data/icons/Hosting_Icons/128/secure-server-px-png.png">
 <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
 <style>
@@ -164,11 +164,11 @@ echo '
 function datatables()
 {
 echo '<!-- Datatables -->
-<link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
 
 <script type="text/javascript" src="'.URL.'assets/js/datatable-es.js"></script>
 
-<script type="text/javascript" src="http://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>';
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>';
 }
 
 
@@ -182,15 +182,15 @@ echo '
 
 function selectize()
 {
-echo '<link rel="stylesheet" href="http://selectize.github.io/selectize.js/css/selectize.default.css" >
-<script src="http://selectize.github.io/selectize.js/js/selectize.js"></script>';
+echo '<link rel="stylesheet" href="https://selectize.github.io/selectize.js/css/selectize.default.css" >
+<script src="https://selectize.github.io/selectize.js/js/selectize.js"></script>';
 }
 
 
 function jqueryiu()
 {
-	echo '<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>  
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">';
+	echo '<script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>  
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">';
 }
 
 
