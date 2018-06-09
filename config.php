@@ -10,12 +10,12 @@ define("FOLDER","/condominio/");#Folder del Proyecto
 #Datos de Conexión a Base de Datos
 define("SERVER","localhost");
 define("USER", "root");
-#define("PASS", "userperutecdb");
-define("PASS", "");
+define("PASS", "userperutecdb");
+#define("PASS", "");
 define("BD", "condominio");
 
 #CONSTANTES VARIABLES SESION
-define("KEY",md5($_SERVER['SERVER_NAME'].FOLDER));
+define("KEY",$_SERVER['SERVER_NAME'].FOLDER);
 define("ID", "ID");
 define("NOMBRES", "NOMBRES");
 define("APELLIDOS", "APELLIDOS");
